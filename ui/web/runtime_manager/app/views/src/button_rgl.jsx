@@ -85,9 +85,10 @@ export default class ButtonRGL extends React.Component {
                 this.props.structure.nodes,
                 this.props.structure.edges);
 
+            const nodeDomain = structure.nodes[index].domain;
             const nodeLabel = structure.nodes[index].label;
             const nodeDisplay = structure.nodes[index].display;
-            const url = WEB_UI_URL+"/roslaunch/"+nodeLabel+"/"+(this.props.structure.nodes[index].chosen ? "on" : "off");
+            const url = WEB_UI_URL+"/roslaunch/"+nodeDomain+"/"+nodeLabel+"/"+(this.props.structure.nodes[index].chosen ? "on" : "off");
             structure.nodes[index].span = (<ROSLaunchRequest
                 url={url}
                 errorCallback={() => { return (<span>error</span>); }}
