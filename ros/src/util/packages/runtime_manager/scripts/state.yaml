@@ -1,13 +1,25 @@
 mainstate:
-        - name : Start
-        - name : Init
-        - name : Locate
-        - name : Drive
-        - name : Goal
-        - name : Emergency
+        START         : 1
+        INIT          : 2
+        LOCATE        : 3
+        DRIVE         : 4
+        Remote-DRIVE  : 99
+        Auto-DRIVE    : 99
+        GOAL          : 5
+        EMERGENCY     : 6
 
 substate:
-    - name : acc
-    - name : steering
-    - name : behavior
-    - name : perception
+        Accelerate : 10
+        Decelerate : 11
+        Keep       : 12
+        Stop       : 13
+        Stop_pause : 14
+        Straight   : 20
+        Left       : 21
+        Right      : 22
+
+        Lane Change Left     : 30
+        Lane Change Right    : 31
+        Obstacle Avoidance   : 32
+        ClearB : 30
+
