@@ -51,20 +51,26 @@ def getResources(type, path):
         return api_response(500, {"type": type, "path": path})
 
 
-@flask.route('/roslaunch/<target>/<mode>')
-def roslaunch(target, mode):
-    print("roslaunch", target, mode)
-
-    if target == "rosbag-play":
-        if mode == "on":
-            rosController.play_rosbag()
-        else:
-            rosController.pause_rosbag()
-        return api_response(200, {"target": target, "mode": mode})
+@flask.route('/roslaunch/<domain>/<target>/<mode>')
+def roslaunch(domain, target, mode):
+    print("roslaunch", domain, target, mode)
 
     try:
-        rosController.launch(mode, target)
-        return api_response(200, {"target": target, "mode": mode})
+        if (domain, target) == ("rosbag", "play"):
+            if mode == "on":
+                rosController.play_rosbag()
+            else:
+                rosController.pause_rosbag()
+            return api_response(200, {"domain": domain, "target": target, "mode": mode})
+        elif (domain, target) == ("gateway", "on"):
+            if mode == "on":
+                rosController.gateway_on()
+            else:
+                rosController.gateway_off()
+            return api_response(200, {"domain": domain, "target": target, "mode": mode})
+        else:
+            rosController.launch(domain, target, mode)
+            return api_response(200, {"domain": domain, "target": target, "mode": mode})
     except:
         traceback.print_exc()
         return api_response(500, {"target": target, "mode": mode})
