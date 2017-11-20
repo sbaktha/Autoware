@@ -19,14 +19,14 @@ class Index extends React.Component {
                 cols: 25,
                 rowHeight: 9,
                 nodes: [
-                    {id: 1, x: 0,  y: 4, w: 4, h: 3, physics: true,  chosen: false, domain: "initialization", label: 'initialization', display: "Initialization", span: (<span>Initialization</span>)},
+                    {id: 1, x: 0,  y: 4, w: 4, h: 3, physics: false,  chosen: false, domain: "initialization", label: 'initialization', display: "Initialization", span: (<span>Initialization</span>)},
                     {id: 2, x: 5,  y: 0, w: 4, h: 3, physics: false, chosen: false, domain: "map", label: 'map', display: "Map", span: (<span>Map</span>)},
                     {id: 3, x: 10, y: 0, w: 4, h: 3, physics: false, chosen: false, domain: "localization", label: 'localization', display: "Localization", span: (<span>Localization</span>)},
                     {id: 4, x: 15, y: 0, w: 4, h: 3, physics: false, chosen: false, domain: "mission", label: 'mission', display: "Mission", span: (<span>Mission Planning</span>)},
                     {id: 5, x: 20, y: 0, w: 4, h: 3, physics: false, chosen: false, domain: "motion", label: 'motion', display: "Motion", span: (<span>Motion Planning</span>)},
                     {id: 6, x: 5,  y: 4, w: 4, h: 3, physics: false, chosen: false, domain: "sensing", label: 'sensing', display: "Sensing", span: (<span>Sensing</span>)},
                     {id: 7, x: 15, y: 4, w: 4, h: 3, physics: false, chosen: false, domain: "detection", label: 'detection', display: "Detection", span: (<span>Detection</span>)},
-                    {id: 8, x: 0,  y: 0, w: 2, h: 3, physics: true,  chosen: false, domain: "rosbag", label: 'rosbag', display: "ROSBAG", span: (<span>ROSBAG</span>)},
+                    {id: 8, x: 0,  y: 0, w: 2, h: 3, physics: false,  chosen: false, domain: "rosbag", label: 'rosbag', display: "ROSBAG", span: (<span>ROSBAG</span>)},
                     {id: 9, x: 2,  y: 0, w: 2, h: 3, physics: false, chosen: false, domain: "rosbag", label: 'play', display: "Play", span: (<span>play</span>)},
                     {id: 10, x: 20, y: 4, w: 3, h: 3, physics: false, chosen: false, domain: "gateway", label: 'gateway', display: "Vehicle Gateway", span: (<span>Vehicle Gateway</span>)},
                     {id: 11, x: 23, y: 4, w: 1, h: 3, physics: false, chosen: false, domain: "gateway", label: 'on', display: "On", span: (<span>On</span>)},
@@ -106,20 +106,20 @@ class Index extends React.Component {
             <div>
                 <ButtonRGL
                     structure={this.state.buttonRGL}
-                    updateStructure={this.updatebuttonRGLStructure.bind(this)}
+                    updateStructure={this.updateButtonRGLStructure.bind(this)}
                 />
                 <ViewRGL
                     structure={this.state.viewRGL}
-                    updateStructure={this.updateviewRGLStructure.bind(this)}
+                    updateStructure={this.updateViewRGLStructure.bind(this)}
                 />
             </div>
         );
     }
-    updatebuttonRGLStructure(nextStructure) {
+    updateButtonRGLStructure(nextStructure) {
         this.setState({buttonRGL: nextStructure});
         this.updateViewRGLVisibility();
     }
-    updateviewRGLStructure(nextStructure) {
+    updateViewRGLStructure(nextStructure) {
         this.setState({viewRGL: nextStructure});
     }
     updateViewRGLVisibility() {
@@ -130,7 +130,7 @@ class Index extends React.Component {
             const nodeIndex = buttonRGL.nodes.findIndex(node => node.id === nodeId);
             viewRGL.contents[contentIndex].isVisible = buttonRGL.nodes[nodeIndex].chosen;
         }
-        this.setState({ViewRGL: viewRGL});
+        this.setState({viewRGL: viewRGL});
     }
 }
 

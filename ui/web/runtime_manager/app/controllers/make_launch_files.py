@@ -95,9 +95,9 @@ def create_initialization_launch_file(rosbag=True):
     )
 
 
-    launch.append(Comment("web_vider_server"))
+    launch.append(Comment("web_video_server"))
     SubElement(
-        launch, "node", {"pkg": "web_video_server", "type": "web_video_server", "name": "web_vide_server"}
+        launch, "node", {"pkg": "web_video_server", "type": "web_video_server", "name": "web_video_server"}
     )
 
 

@@ -30,15 +30,15 @@ class ROSController(object):
     def __del__(self):
         self.__devnull.close()
 
-    def launch(self, domain="map", target="map", on=True):
+    def launch(self, domain="map", target="map", mode="on"):
         launch_id = "/".join([domain, target])
-        if on:
+        if mode == "on":
             self.__launches[launch_id] = roslaunch.parent.ROSLaunchParent(
                 self.__uuid, [self.__path + "/res/{}/{}.launch".format(domain, target)])
             self.__launches[launch_id].start()
-            print(self.__launches[launch_id], dir(self.__launches[launch_id]))
         else:
-            self.__launches[launch_id].shutdown()
+            if launch_id in self.__launches:
+                self.__launches[launch_id].shutdown()
         return True
 
     def killall(self):
